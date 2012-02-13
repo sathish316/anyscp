@@ -1,15 +1,17 @@
-## AnySCP
+## anyScp
 
-AnySCP is a simplified Managed File Transfer app that executes and tracks File transfers between any two remote machines using plain SCP.
-It is a replacement for multiplatform $$$ file transform products with the following features:
+anyScp is a simplified file transfer app that transfers files between any two remote machines using scp and a simple REST API.
+It is a replacement for $$$ Multiplatform Managed file transfer products 
+
+### Features
 
 1. Multiplatform: FROM/TO Windows/Linux/Unix/AS400/AIX machines
 1. RESTful API to create synchronized/async file transfer jobs
 1. Post/Pre transfer hooks to execute custom jobs in remote machines
-1. Logging all file transfers
+1. Logging all file transfers and failures
 1. Manage remote host/user/passwords in one place
 
-### SETUP
+### anySCP Setup
 
 1. Migrate and add hosts
 
@@ -29,7 +31,7 @@ It is a replacement for multiplatform $$$ file transform products with the follo
 
 5. Start Rails app
 
-<pre>$ unicorn_rails</pre>
+<pre>$ unicorn_rails -p3000</pre>
 
 6. Trigger file transfer using curl
 
@@ -60,26 +62,25 @@ Go to http://localhost:3000/hosts
 | linuxbox1 | 33.33.33.10 | vagrant | vagrant  |
 | linuxbox2 | 33.33.33.12 | vagrant | vagrant  |
 
-4. Setup anyscp. Start file transfer using API
+4. Setup anyscp. Start file transfer using curl
 
 <pre>$curl -X POST -d "source_host=linuxbox1&source_file=/home/vagrant/data/file1.txt&dest_host=linuxbox2&dest_file=/home/vagrant/data/file2.txt" http://localhost:3000/file_transfers.json </pre>
-
-### DONE
-
-1. Hosts: Hostname,IP,user,password management (stored in Sqlite db)
-1. Setup Redis
-1. FileTransfer: Async file transfer (using Resque)
-1. Setup Resque workers
-1. Resque webview
 
 ### TODO
 
 1. Encrypt password
-1. FileTransfer: API for sync file transfer
+1. Sync file transfer
 1. Mount Rack app for Resque webview
-1. View all file transfers
+1. View all completed file transfers
 1. API to SSH and execute remote jobs
 1. Post transfer hook to invoke remote jobs
+
+### DONE
+
+1. Manage hosts
+1. Setup Redis
+1. Setup Resque workers
+1. Async file transfer
 
 ### TESTED
 
