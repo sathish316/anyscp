@@ -42,6 +42,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.4)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.2.2)
     polyglot (0.3.3)
     rack (1.2.5)
     rack-mount (0.6.14)
@@ -95,6 +98,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  net-scp
   rails (= 3.0.9)
   resque
   sqlite3

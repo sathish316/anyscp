@@ -35,6 +35,35 @@ It is a replacement for multiplatform $$$ file transform products with the follo
 
 <pre>$curl -X POST -d "source_host=host1&source_file=file1&dest_host=host2&dest_file=file2" http://localhost:3000/file_transfers.json </pre>
 
+### File Transfer Demo
+
+1. Start Vagrant boxes: LinuxBox1 (33.33.33.10) and LinuxBox2 (33.33.33.12)
+
+<pre>
+vms/linuxbox1$ vagrant up
+vms/linuxbox2$ vagrant up
+</pre>
+
+2. Create sample file in LinuxBox1
+
+<pre>
+vms/linuxbox1$ vagrant ssh
+vms/linuxbox2$ vi file1.txt
+This is file1 in LinuxBox1
+</pre>
+
+3. Create hosts for LinuxBox1 and LinuxBox2 in app:
+
+Go to http://localhost:3000/hosts
+
+| hostname  | ip          | user    | password |
+| linuxbox1 | 33.33.33.10 | vagrant | vagrant  |
+| linuxbox2 | 33.33.33.12 | vagrant | vagrant  |
+
+4. Setup anyscp. Start file transfer using API
+
+<pre>$curl -X POST -d "source_host=linuxbox1&source_file=/home/vagrant/data/file1.txt&dest_host=linuxbox2&dest_file=/home/vagrant/data/file2.txt" http://localhost:3000/file_transfers.json </pre>
+
 ### DONE
 
 1. Hosts: Hostname,IP,user,password management (stored in Sqlite db)
@@ -46,17 +75,18 @@ It is a replacement for multiplatform $$$ file transform products with the follo
 ### TODO
 
 1. Encrypt password
-1. FileTransfer: API for sync file transfer (stored in Redis)
+1. FileTransfer: API for sync file transfer
 1. Mount Rack app for Resque webview
 1. View all file transfers
 1. API to SSH and execute remote jobs
-1. Post transfer hook to invoke above API
+1. Post transfer hook to invoke remote jobs
 
 ### TESTED
 
+1. Linux to Linux file transfer
+
 ### TODO - TEST
 
-1. Linux to Linux file transfer
 1. Windows SSH/SCP setup
 2. Windows to Any file transfer
 3. Any to Windows file transfer

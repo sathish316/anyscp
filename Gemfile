@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'unicorn'
 
 gem 'resque'
+gem 'net-scp'
 
 # Deploy with Capistrano
 # gem 'capistrano'
