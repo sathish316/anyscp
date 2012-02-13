@@ -1,5 +1,7 @@
 Anyscp::Application.routes.draw do
-  resources :hosts
+  resources :file_transfers
+
+  resources :hosts, only: [:create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
