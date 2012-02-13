@@ -13,40 +13,40 @@ It is a replacement for $$$ Multiplatform Managed file transfer products
 
 ### anySCP Setup
 
-1. Migrate and add hosts
+1) Migrate and add hosts
 
 <pre>$ rake db:migrate</pre>
 
-2. Start Redis server
+2) Start Redis server
 
 <pre>$ redis-server</pre>
 
-3. Start Resque workers
+3) Start Resque workers
 
 <pre>$ QUEUE=file_transfer rake resque:setup resque:work</pre>
 	
-4. Start Resque webapp
+4) Start Resque webapp
 
 <pre>$ resque-web</pre>
 
-5. Start Rails app
+5) Start Rails app
 
 <pre>$ unicorn_rails -p3000</pre>
 
-6. Trigger file transfer using curl
+6) Trigger file transfer using curl
 
 <pre>$curl -X POST -d "source_host=host1&source_file=file1&dest_host=host2&dest_file=file2" http://localhost:3000/file_transfers.json </pre>
 
 ### File Transfer Demo
 
-1. Start Vagrant boxes: LinuxBox1 (33.33.33.10) and LinuxBox2 (33.33.33.12)
+1) Start Vagrant boxes: LinuxBox1 (33.33.33.10) and LinuxBox2 (33.33.33.12)
 
 <pre>
 vms/linuxbox1$ vagrant up
 vms/linuxbox2$ vagrant up
 </pre>
 
-2. Create sample file in LinuxBox1
+2) Create sample file in LinuxBox1
 
 <pre>
 vms/linuxbox1$ vagrant ssh
@@ -54,15 +54,17 @@ vms/linuxbox2$ vi file1.txt
 This is file1 in LinuxBox1
 </pre>
 
-3. Create hosts for LinuxBox1 and LinuxBox2 in app:
+3) Create hosts for LinuxBox1 and LinuxBox2 in app:
 
 Go to http://localhost:3000/hosts
 
+<pre>
 | hostname  | ip          | user    | password |
 | linuxbox1 | 33.33.33.10 | vagrant | vagrant  |
 | linuxbox2 | 33.33.33.12 | vagrant | vagrant  |
+</pre>
 
-4. Setup anyscp. Start file transfer using curl
+4) Setup anyscp. Start file transfer using curl
 
 <pre>$curl -X POST -d "source_host=linuxbox1&source_file=/home/vagrant/data/file1.txt&dest_host=linuxbox2&dest_file=/home/vagrant/data/file2.txt" http://localhost:3000/file_transfers.json </pre>
 
@@ -82,10 +84,6 @@ Go to http://localhost:3000/hosts
 1. Setup Resque workers
 1. Async file transfer
 
-### TESTED
-
-1. Linux to Linux file transfer
-
 ### TODO - TEST
 
 1. Windows SSH/SCP setup
@@ -99,5 +97,9 @@ Go to http://localhost:3000/hosts
 3. Any to AS400 file transfer
 1. Linux to Any file transfer
 2. Any to Linux file transfer
+
+### TESTED
+
+1. Linux to Linux file transfer
 
 
